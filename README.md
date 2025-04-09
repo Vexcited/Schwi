@@ -55,3 +55,9 @@ build a cross-platform library that should work everywhere.
 
 The goal of this library is to provide a consistent API across runtimes.
 This means that you can use the same HTTP API across all runtimes, and it will behave the same way.
+
+## Features
+
+- Implements a working `getSetCookie` function on `HeaderMap`, [even on React Native](https://github.com/facebook/react-native/issues/47049)
+- [Tauri's native HTTP plugin](https://tauri.app/plugin/http-client/) is automatically used when available
+- Uses [`undici`](https://github.com/nodejs/undici) on Bun to [prevent strange headers issues](https://github.com/oven-sh/bun/issues/4529#issuecomment-2611447527)
