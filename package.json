@@ -1,0 +1,17 @@
+{
+  "exports": {
+    "react-native": "./dist/index.react-native.js",
+    "browser": "./dist/index.tauri.js",
+    "bun": "./dist/index.bun.js",
+    "default": "./dist/index.node.js"
+  },
+  "dependencies": {
+    "undici": "^7.7.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.9"
+  },
+  "optionalDependencies": {
+    "@tauri-apps/plugin-http": "^2.4.3"
+  }
+}
