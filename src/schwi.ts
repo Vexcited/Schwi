@@ -40,12 +40,6 @@ export class Schwi {
   ) {}
 
   public async send (req: HttpRequest): Promise<HttpResponse> {
-    const response = await this.fetcher(req);
-
-    return {
-      status: response.status,
-      content: response.content,
-      headers: new HeaderMap(response.headers)
-    };
+    return this.fetcher(req)
   }
 }
