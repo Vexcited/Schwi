@@ -1,3 +1,4 @@
+// @ts-expect-error
 import { fetch as _fetch } from "undici/lib/web/fetch/index.js";
 //                               ^ import from path to avoid bun overriding it.
 
