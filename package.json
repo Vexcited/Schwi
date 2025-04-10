@@ -1,17 +1,60 @@
 {
+  "name": "schwi",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    "react-native": "./dist/index.react-native.js",
-    "browser": "./dist/index.tauri.js",
-    "bun": "./dist/index.bun.js",
-    "default": "./dist/index.node.js"
+    "react-native": {
+      "import": {
+        "types": "./dist/index.react-native.d.mts",
+        "default": "./dist/index.react-native.mjs"
+      },
+      "default": {
+        "types": "./dist/index.react-native.d.ts",
+        "default": "./dist/index.react-native.js"
+      }
+    },
+    "browser": {
+      "import": {
+        "types": "./dist/index.tauri.d.mts",
+        "default": "./dist/index.tauri.mjs"
+      },
+      "default": {
+        "types": "./dist/index.tauri.d.ts",
+        "default": "./dist/index.tauri.js"
+      }
+    },
+    "bun": {
+      "import": {
+        "types": "./dist/index.bun.d.mts",
+        "default": "./dist/index.bun.mjs"
+      },
+      "default": {
+        "types": "./dist/index.bun.d.ts",
+        "default": "./dist/index.bun.js"
+      }
+    },
+    "default": {
+      "import": {
+        "types": "./dist/index.node.d.mts",
+        "default": "./dist/index.node.mjs"
+      },
+      "default": {
+        "types": "./dist/index.node.d.ts",
+        "default": "./dist/index.node.js"
+      }
+    }
   },
   "dependencies": {
     "undici": "^7.7.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.9"
+    "@types/bun": "^1.2.9",
+    "terser": "^5.39.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
   },
   "optionalDependencies": {
-    "@tauri-apps/plugin-http": "^2.4.3"
+    "@tauri-apps/plugin-http": "~2"
   }
 }
