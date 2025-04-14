@@ -129,4 +129,12 @@ export class HeaderMap {
 
     return output;
   }
+
+  public toNativeHeaders (): Headers {
+    if (HeaderMap.isHeadersInstance(this.headers)) {
+      return this.headers as Headers;
+    }
+
+    return new Headers(Object.entries(this.headers));
+  }
 }

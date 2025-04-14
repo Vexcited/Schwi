@@ -1,12 +1,13 @@
 import { HeaderMap } from "~/headers";
-import type { HttpRequest, HttpResponse } from "~/schwi"
+import type { HttpResponse } from "~/schwi"
+import type { HttpRequest } from "~/request";
 
 export const fetchAdapter = async (fetch: (url: string, init: RequestInit) => Promise<Response>, req: HttpRequest): Promise<HttpResponse> => {
   const response = await fetch(req.url.href, {
-    redirect: req.redirect ?? "follow",
-    headers: req.headers ?? {},
-    method: req.method ?? "GET",
-    body: req.content,
+    redirect: req.redirection,
+    headers: req.headers.toNativeHeaders(),
+    method: req.method,
+    body: req.body,
 
     // We don't want to send cookies, only the ones we set manually.
     credentials: "omit"
