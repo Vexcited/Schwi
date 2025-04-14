@@ -1,9 +1,9 @@
-import { Schwi } from "./schwi";
+import { factory } from "./factory";
 import { fetcher } from "./fetchers/tauri";
 
 export { HeaderMap } from "./headers";
 export { HttpRequest, HttpRequestRedirection } from "./request";
-export type { HttpResponse } from "./schwi";
+export type { HttpResponse } from "./factory";
 export * from "./form";
 
-export default new Schwi(fetcher);
+export const send = factory(fetcher);

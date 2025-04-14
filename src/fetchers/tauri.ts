@@ -1,8 +1,8 @@
 import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 
-import type { SchwiFetcher } from "../schwi";
+import type { Fetcher } from "../factory";
 import { fetchAdapter } from "./adapters/fetch";
 
-export const fetcher: SchwiFetcher = async (req) => {
+export const fetcher: Fetcher = async (req) => {
   return fetchAdapter(tauriFetch, req);
 };

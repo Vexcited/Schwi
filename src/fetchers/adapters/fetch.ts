@@ -1,5 +1,5 @@
 import { HeaderMap } from "~/headers";
-import type { HttpResponse } from "~/schwi"
+import type { HttpResponse } from "~/factory"
 import type { HttpRequest } from "~/request";
 
 export const fetchAdapter = async (fetch: (url: string, init: RequestInit) => Promise<Response>, req: HttpRequest): Promise<HttpResponse> => {

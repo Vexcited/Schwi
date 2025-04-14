@@ -16,11 +16,11 @@ export class HttpRequest {
   ) {}
 
   public static Builder = class HttpRequestBuilder {
-    private url: URL
-    private method = HttpMethod.GET
-    private body?: string | FormData | Blob | ArrayBuffer | Uint8Array
-    private headers = new HeaderMap()
-    private redirection = HttpRequestRedirection.MANUAL
+    url: URL
+    method = HttpMethod.GET
+    body?: string | FormData | Blob | ArrayBuffer | Uint8Array
+    headers = new HeaderMap()
+    redirection = HttpRequestRedirection.MANUAL
 
     constructor (url: URL | string) {
       if (typeof url === "string") {
