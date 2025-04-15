@@ -23,9 +23,18 @@ export class HeaderMap {
   public get (key: string): string | null {
     const headers = this.headers;
 
-    return HeaderMap.isHeadersInstance(headers)
-      ? headers.get(key)
-      : headers[key] || null;
+    if (HeaderMap.isHeadersInstance(headers)) {
+      return headers.get(key);
+    }
+
+    key = key.toLowerCase();
+    for (const currentKey of Object.keys(headers)) {
+      if (currentKey.toLowerCase() === key) {
+        return headers[currentKey];
+      }
+    }
+
+    return null;
   }
 
   public set (key: string, value: string): void {
@@ -38,11 +47,10 @@ export class HeaderMap {
   }
 
   public getSetCookie (): string[] {
-    // When the function exists, simply use it !
     if (typeof this.headers.getSetCookie === "function")
       return this.headers.getSetCookie();
 
-    const setCookieHeader = this.get("set-cookie");
+    const setCookieHeader = this.get(HeaderKeys.SET_COOKIE);
 
     if (!setCookieHeader)
       return [];
@@ -137,4 +145,12 @@ export class HeaderMap {
 
     return new Headers(Object.entries(this.headers));
   }
+}
+
+export enum HeaderKeys {
+  COOKIE = "Cookie",
+  SET_COOKIE = "Set-Cookie",
+  USER_AGENT = "User-Agent",
+  CONTENT_TYPE = "Content-Type",
+  AUTHORIZATION = "Authorization",
 }

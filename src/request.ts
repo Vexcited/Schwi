@@ -1,4 +1,4 @@
-import { HeaderMap } from "./headers"
+import { HeaderKeys, HeaderMap } from "./headers"
 import { HttpMethod } from "./method"
 
 export enum HttpRequestRedirection {
@@ -37,13 +37,13 @@ export class HttpRequest {
 
     public setJsonBody (json: object): this {
       this.body = JSON.stringify(json)
-      this.headers.set("Content-Type", "application/json")
+      this.headers.set(HeaderKeys.CONTENT_TYPE, "application/json")
       return this
     }
 
     public setSearchParamsBody (searchParams: URLSearchParams): this {
       this.body = searchParams.toString()
-      this.headers.set("Content-Type", "application/x-www-form-urlencoded")
+      this.headers.set(HeaderKeys.CONTENT_TYPE, "application/x-www-form-urlencoded")
       return this
     }
 
