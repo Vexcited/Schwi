@@ -12,7 +12,7 @@ export class HttpRequest {
     public readonly method: HttpMethod,
     public readonly body: undefined | string | FormData | Blob | ArrayBuffer | Uint8Array,
     public readonly headers: HeaderMap,
-    public readonly redirection: HttpRequestRedirection
+    public readonly redirection: HttpRequestRedirection,
   ) {}
 
   public static Builder = class HttpRequestBuilder {
@@ -21,6 +21,7 @@ export class HttpRequest {
     body?: string | FormData | Blob | ArrayBuffer | Uint8Array
     headers = new HeaderMap()
     redirection = HttpRequestRedirection.MANUAL
+    cookies: Record<string, string> = {}
 
     constructor (url: URL | string) {
       if (typeof url === "string") {
@@ -57,7 +58,34 @@ export class HttpRequest {
       return this
     }
 
+    public setAllCookies (cookies: Record<string, string>): this {
+      this.cookies = { ...this.cookies, ...cookies }
+      return this
+    }
+
+    public setCookie (key: string, value: string): this {
+      this.cookies[key] = value
+      return this
+    }
+
+    public deleteAllCookies (): this {
+      this.cookies = {}
+      return this
+    }
+
+    public deleteCookie (key: string): this {
+      delete this.cookies[key]
+      return this
+    }
+
     public build (): HttpRequest {
+      const cookies = Object.entries(this.cookies)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("; ");
+
+      if (cookies.length > 0)
+        this.headers.set(HeaderKeys.COOKIE, cookies)
+
       return new HttpRequest(
         this.url,
         this.method,
