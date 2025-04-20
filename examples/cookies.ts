@@ -1,9 +1,12 @@
-import { HeaderMap } from "../src/headers";
+import { HttpRequest, send } from "schwi";
 
 void async function () {
-  const url = "https://postman-echo.com/cookies/set?foo1=bar1&foo2=bar2";
-  const response = await fetch(url, { redirect: "manual" });
+  const request = new HttpRequest.Builder("https://postman-echo.com/cookies/set")
+    .setUrlSearchParameter("foo1", "bar1")
+    .setUrlSearchParameter("foo2", "bar2")
+    .setRedirection(HttpRequest.Redirection.MANUAL)
+    .build();
 
-  const headers = new HeaderMap(response.headers);
-  console.log(headers.getSetCookie());
+  const response = await send(request);
+  console.log(response.headers.getSetCookie());
 }();

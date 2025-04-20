@@ -6,7 +6,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "schwi": ["./src/index.ts"]
     },
 
     "strict": true,
