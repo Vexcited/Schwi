@@ -1,6 +1,6 @@
-import type { HttpResponse } from "~/factory";
 import type { HttpRequest } from "~/request";
 import { HeaderMap } from "~/headers";
+import { HttpResponse } from "~/response";
 
 export const fetchAdapter = async (fetch: (url: string, init: RequestInit) => Promise<Response>, req: HttpRequest): Promise<HttpResponse> => {
   const response = await fetch(req.url.href, {
@@ -13,9 +13,16 @@ export const fetchAdapter = async (fetch: (url: string, init: RequestInit) => Pr
     redirect: req.redirection
   });
 
-  return {
-    content: await response.text(),
-    headers: new HeaderMap(response.headers),
-    status: response.status
-  };
+  return new HttpResponse(
+    response.url,
+    response.status,
+    new HeaderMap(response.headers),
+    async () => {
+      return response.text();
+    },
+    async () => {
+      const buffer = await response.arrayBuffer();
+      return buffer;
+    }
+  );
 };
