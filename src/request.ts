@@ -1,5 +1,14 @@
 import { HeaderKeys, HeaderMap } from "./headers";
-import { HttpMethod } from "./method";
+
+enum HttpRequestMethod {
+  DELETE = "DELETE",
+  GET = "GET",
+  HEAD = "HEAD",
+  OPTIONS = "OPTIONS",
+  PATCH = "PATCH",
+  POST = "POST",
+  PUT = "PUT"
+}
 
 enum HttpRequestRedirection {
   FOLLOW = "follow",
@@ -10,7 +19,7 @@ class HttpRequestBuilder {
   private body?: ArrayBuffer | Blob | FormData | string | Uint8Array;
   private cookies: Record<string, string> = {};
   private headers = new HeaderMap();
-  private method = HttpMethod.GET;
+  private method = HttpRequestMethod.GET;
   private redirection = HttpRequestRedirection.MANUAL;
   private url: URL;
 
@@ -80,7 +89,7 @@ class HttpRequestBuilder {
     return this;
   }
 
-  public setMethod(method: HttpMethod): this {
+  public setMethod(method: HttpRequestMethod): this {
     this.method = method;
     return this;
   }
@@ -104,11 +113,12 @@ class HttpRequestBuilder {
 
 export class HttpRequest {
   public static Builder = HttpRequestBuilder;
+  public static Method = HttpRequestMethod;
   public static Redirection = HttpRequestRedirection;
 
   public constructor(
     public readonly url: URL,
-    public readonly method: HttpMethod,
+    public readonly method: HttpRequestMethod,
     public readonly body: ArrayBuffer | Blob | FormData | string | Uint8Array | undefined,
     public readonly headers: HeaderMap,
     public readonly redirection: HttpRequestRedirection
