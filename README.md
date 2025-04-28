@@ -8,20 +8,26 @@ Let's see an example about `Set-Cookie` headers.
 
 ```javascript
 // Browsers, Bun, Deno, Node.js
-new Headers([["Set-Cookie", "hello=1"], ["Set-Cookie", "world=2"]])
-  .getSetCookie();
+new Headers([
+  ["Set-Cookie", "hello=1"],
+  ["Set-Cookie", "world=2"],
+]).getSetCookie();
 // This simply works, we get the following.
 // > ["hello=1", "world=2"]
 
 // React Native
-new Headers([["Set-Cookie", "hello=1"], ["Set-Cookie", "world=2"]])
-  .getSetCookie();
+new Headers([
+  ["Set-Cookie", "hello=1"],
+  ["Set-Cookie", "world=2"],
+]).getSetCookie();
 // This does NOT work because they're using
 // https://www.npmjs.com/package/whatwg-fetch
 // and `getSetCookie` is not implemented there.
 // You can fix this by using the following code instead:
-new Headers([["Set-Cookie", "hello=1"], ["Set-Cookie", "world=2"]])
-  .get("Set-Cookie");
+new Headers([
+  ["Set-Cookie", "hello=1"],
+  ["Set-Cookie", "world=2"],
+]).get("Set-Cookie");
 // > "hello=1, world=2"
 // Now this works, but as you can see the output is not the same...
 // We have to handle this properly !
@@ -61,3 +67,5 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 - Implements a working `getSetCookie` function on `HeaderMap`, [even on React Native](https://github.com/facebook/react-native/issues/47049)
 - [Tauri's native HTTP plugin](https://tauri.app/plugin/http-client/) is automatically used when available
 - Uses [`undici`](https://github.com/nodejs/undici) on Bun to [prevent strange headers issues](https://github.com/oven-sh/bun/issues/4529#issuecomment-2611447527)
+
+## Usage

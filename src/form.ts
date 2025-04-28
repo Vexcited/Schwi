@@ -1,8 +1,8 @@
-export type ReactNativeFileFromURI = {
-  uri: string
-  name: string
-  type: string
-  size: number
-};
+export type FormDataFile = ArrayBuffer | Blob | Buffer | File | ReactNativeFileFromURI | Uint8Array;
 
-export type FormDataFile = Blob | File | Buffer | ArrayBuffer | Uint8Array | ReactNativeFileFromURI;
+export interface ReactNativeFileFromURI {
+  name: string;
+  size: number;
+  type: string;
+  uri: string;
+}

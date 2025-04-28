@@ -1,16 +1,16 @@
-import { HeaderMap } from "./headers"
-import { HttpRequest } from "./request";
-
-export interface HttpResponse {
-  status: number
-  content: string
-  headers: HeaderMap
-}
+import type { HeaderMap } from "./headers";
+import type { HttpRequest } from "./request";
 
 export type Fetcher = (req: HttpRequest) => Promise<HttpResponse>;
 
+export interface HttpResponse {
+  content: string;
+  headers: HeaderMap;
+  status: number;
+}
+
 export const factory = (fetcher: Fetcher) => {
   return (req: HttpRequest): Promise<HttpResponse> => {
-    return fetcher(req)
-  }
-}
+    return fetcher(req);
+  };
+};

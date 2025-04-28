@@ -1,4 +1,4 @@
-// @ts-expect-error
+// @ts-expect-error: undici is not typed with this type of import.
 import { fetch as _fetch } from "undici/lib/web/fetch/index.js";
 //                               ^ import from path to avoid Bun overriding it.
 

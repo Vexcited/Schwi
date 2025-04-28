@@ -1,96 +1,39 @@
-import { HeaderKeys, HeaderMap } from "./headers"
-import { HttpMethod } from "./method"
+import { HeaderKeys, HeaderMap } from "./headers";
+import { HttpMethod } from "./method";
 
 enum HttpRequestRedirection {
   FOLLOW = "follow",
-  MANUAL = "manual",
+  MANUAL = "manual"
 }
 
 class HttpRequestBuilder {
-  private url: URL
-  private method = HttpMethod.GET
-  private body?: string | FormData | Blob | ArrayBuffer | Uint8Array
-  private headers = new HeaderMap()
-  private redirection = HttpRequestRedirection.MANUAL
-  private cookies: Record<string, string> = {}
+  private body?: ArrayBuffer | Blob | FormData | string | Uint8Array;
+  private cookies: Record<string, string> = {};
+  private headers = new HeaderMap();
+  private method = HttpMethod.GET;
+  private redirection = HttpRequestRedirection.MANUAL;
+  private url: URL;
 
-  constructor (url: URL | string) {
+  constructor(url: string | URL) {
     if (typeof url === "string") {
-      url = new URL(url)
+      url = new URL(url);
     }
 
-    this.url = url
+    this.url = url;
   }
 
-  public setMethod (method: HttpMethod): this {
-    this.method = method
-    return this
+  public appendUrlSearchParameter(key: string, value: string): this {
+    this.url.searchParams.append(key, value);
+    return this;
   }
 
-  public setJsonBody (json: object): this {
-    this.body = JSON.stringify(json)
-    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/json")
-    return this
-  }
-
-  public setSearchParamsBody (searchParams: URLSearchParams): this {
-    this.body = searchParams.toString()
-    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/x-www-form-urlencoded")
-    return this
-  }
-
-  public setHeader (key: string, value: string): this {
-    this.headers.set(key, value)
-    return this
-  }
-
-  public setRedirection (redirect: HttpRequestRedirection): this {
-    this.redirection = redirect
-    return this
-  }
-
-  public setAllCookies (cookies: Record<string, string>): this {
-    this.cookies = { ...this.cookies, ...cookies }
-    return this
-  }
-
-  public setCookie (key: string, value: string): this {
-    this.cookies[key] = value
-    return this
-  }
-
-  public deleteAllCookies (): this {
-    this.cookies = {}
-    return this
-  }
-
-  public deleteCookie (key: string): this {
-    delete this.cookies[key]
-    return this
-  }
-
-  public setUrlSearchParameter (key: string, value: string): this {
-    this.url.searchParams.set(key, value)
-    return this
-  }
-
-  public appendUrlSearchParameter (key: string, value: string): this {
-    this.url.searchParams.append(key, value)
-    return this
-  }
-
-  public deleteUrlSearchParameter (key: string): this {
-    this.url.searchParams.delete(key)
-    return this
-  }
-
-  public build (): HttpRequest {
+  public build(): HttpRequest {
     const cookies = Object.entries(this.cookies)
       .map(([key, value]) => `${key}=${value}`)
       .join("; ");
 
     if (cookies.length > 0)
-      this.headers.set(HeaderKeys.COOKIE, cookies)
+      this.headers.set(HeaderKeys.COOKIE, cookies);
 
     return new HttpRequest(
       this.url,
@@ -98,19 +41,76 @@ class HttpRequestBuilder {
       this.body,
       this.headers,
       this.redirection
-    )
+    );
+  }
+
+  public deleteAllCookies(): this {
+    this.cookies = {};
+    return this;
+  }
+
+  public deleteCookie(key: string): this {
+    delete this.cookies[key];
+    return this;
+  }
+
+  public deleteUrlSearchParameter(key: string): this {
+    this.url.searchParams.delete(key);
+    return this;
+  }
+
+  public setAllCookies(cookies: Record<string, string>): this {
+    this.cookies = { ...this.cookies, ...cookies };
+    return this;
+  }
+
+  public setCookie(key: string, value: string): this {
+    this.cookies[key] = value;
+    return this;
+  }
+
+  public setHeader(key: string, value: string): this {
+    this.headers.set(key, value);
+    return this;
+  }
+
+  public setJsonBody(json: object): this {
+    this.body = JSON.stringify(json);
+    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/json");
+    return this;
+  }
+
+  public setMethod(method: HttpMethod): this {
+    this.method = method;
+    return this;
+  }
+
+  public setRedirection(redirect: HttpRequestRedirection): this {
+    this.redirection = redirect;
+    return this;
+  }
+
+  public setSearchParamsBody(searchParams: URLSearchParams): this {
+    this.body = searchParams.toString();
+    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/x-www-form-urlencoded");
+    return this;
+  }
+
+  public setUrlSearchParameter(key: string, value: string): this {
+    this.url.searchParams.set(key, value);
+    return this;
   }
 }
 
 export class HttpRequest {
-  public static Redirection = HttpRequestRedirection
-  public static Builder = HttpRequestBuilder
+  public static Builder = HttpRequestBuilder;
+  public static Redirection = HttpRequestRedirection;
 
-  public constructor (
+  public constructor(
     public readonly url: URL,
     public readonly method: HttpMethod,
-    public readonly body: undefined | string | FormData | Blob | ArrayBuffer | Uint8Array,
+    public readonly body: ArrayBuffer | Blob | FormData | string | Uint8Array | undefined,
     public readonly headers: HeaderMap,
-    public readonly redirection: HttpRequestRedirection,
+    public readonly redirection: HttpRequestRedirection
   ) {}
 }

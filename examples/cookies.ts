@@ -1,6 +1,6 @@
 import { HttpRequest, send } from "schwi";
 
-void async function () {
+void (async function () {
   const request = new HttpRequest.Builder("https://postman-echo.com/cookies/set")
     .setUrlSearchParameter("foo1", "bar1")
     .setUrlSearchParameter("foo2", "bar2")
@@ -9,4 +9,4 @@ void async function () {
 
   const response = await send(request);
   console.log(response.headers.getSetCookie());
-}();
+}());

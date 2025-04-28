@@ -7,7 +7,7 @@ export default defineConfig({
     "src/index.react-native.ts",
     "src/index.tauri.ts",
     "src/index.node.ts",
-    "src/index.bun.ts",
+    "src/index.bun.ts"
   ],
   format: ["cjs", "esm"],
   minify: "terser",

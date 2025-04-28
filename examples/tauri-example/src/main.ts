@@ -1,6 +1,6 @@
 import { HttpRequest, send } from "schwi";
 
-async function callAPI () {
+async function callAPI(): Promise<void> {
   const request = new HttpRequest.Builder("https://api.github.com")
     .build();
 

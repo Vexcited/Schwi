@@ -1,8 +1,7 @@
 {
   "name": "schwi",
-  "files": [
-    "dist"
-  ],
+  "description": "",
+  "sideEffects": false,
   "exports": {
     "react-native": {
       "import": {
@@ -45,16 +44,22 @@
       }
     }
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "undici": "^7.7.0"
   },
+  "optionalDependencies": {
+    "@tauri-apps/plugin-http": "~2"
+  },
   "devDependencies": {
     "@types/bun": "^1.2.9",
+    "@vexcited/eslint-config": "^0.1.0",
+    "eslint": "^9.25.1",
+    "jiti": "^2.4.2",
     "terser": "^5.39.0",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
-  },
-  "optionalDependencies": {
-    "@tauri-apps/plugin-http": "~2"
   }
 }

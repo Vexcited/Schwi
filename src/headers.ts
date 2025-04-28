@@ -1,26 +1,41 @@
+export enum HeaderKeys {
+  AUTHORIZATION = "Authorization",
+  CONTENT_TYPE = "Content-Type",
+  COOKIE = "Cookie",
+  SET_COOKIE = "Set-Cookie",
+  USER_AGENT = "User-Agent"
+}
 
 /**
  * Basically a copy of the Headers interface from the Fetch API
  * but with `getSetCookie` optional since it is not always available.
  */
 interface HeadersLike {
-  get(key: string): string | null
-  set(key: string, value: string): void
-  getSetCookie?: () => string[]
+  get: (key: string) => null | string;
+  getSetCookie?: () => string[];
+  set: (key: string, value: string) => void;
 }
 
 type PossibleHeaders = (
-  | Record<string, string>
   | Headers
   | HeadersLike
+  | Record<string, string>
 );
 
 export class HeaderMap {
-  public constructor (
+  public constructor(
     private readonly headers: PossibleHeaders = new Headers()
   ) {}
 
-  public get (key: string): string | null {
+  private static isHeadersInstance(headers: PossibleHeaders): headers is (
+    | Headers
+    | HeadersLike
+   ) {
+    return typeof headers.get === "function"
+      && typeof headers.set === "function";
+  }
+
+  public get(key: string): null | string {
     const headers = this.headers;
 
     if (HeaderMap.isHeadersInstance(headers)) {
@@ -37,16 +52,7 @@ export class HeaderMap {
     return null;
   }
 
-  public set (key: string, value: string): void {
-    if (HeaderMap.isHeadersInstance(this.headers)) {
-      this.headers.set(key, value);
-    }
-    else {
-      this.headers[key] = value;
-    }
-  }
-
-  public getSetCookie (): string[] {
+  public getSetCookie(): string[] {
     if (typeof this.headers.getSetCookie === "function")
       return this.headers.getSetCookie();
 
@@ -58,15 +64,24 @@ export class HeaderMap {
     return this.splitSetCookieValue(setCookieHeader);
   }
 
-  private static isHeadersInstance (headers: PossibleHeaders): headers is (
-    | Headers
-    | HeadersLike
-   ) {
-    return typeof headers.get === "function"
-        && typeof headers.set === "function";
+  public set(key: string, value: string): void {
+    if (HeaderMap.isHeadersInstance(this.headers)) {
+      this.headers.set(key, value);
+    }
+    else {
+      this.headers[key] = value;
+    }
   }
 
-  private splitSetCookieValue (headerValue: string): string[] {
+  public toNativeHeaders(): Headers {
+    if (HeaderMap.isHeadersInstance(this.headers)) {
+      return this.headers as Headers;
+    }
+
+    return new Headers(Object.entries(this.headers));
+  }
+
+  private splitSetCookieValue(headerValue: string): string[] {
     const output: Array<string> = [];
 
     let index = 0;
@@ -137,20 +152,4 @@ export class HeaderMap {
 
     return output;
   }
-
-  public toNativeHeaders (): Headers {
-    if (HeaderMap.isHeadersInstance(this.headers)) {
-      return this.headers as Headers;
-    }
-
-    return new Headers(Object.entries(this.headers));
-  }
-}
-
-export enum HeaderKeys {
-  COOKIE = "Cookie",
-  SET_COOKIE = "Set-Cookie",
-  USER_AGENT = "User-Agent",
-  CONTENT_TYPE = "Content-Type",
-  AUTHORIZATION = "Authorization",
 }
