@@ -9,4 +9,7 @@ void (async function () {
 
   const response = await send(request);
   console.log(response.headers.getSetCookie());
+
+  const body = await response.toString();
+  console.log(body);
 }());
