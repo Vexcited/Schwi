@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/Vexcited/Schwi/issues"
   },
+  "workspaces": [
+    "examples/*"
+  ],
   "keywords": [
     "http",
     "client",

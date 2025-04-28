@@ -5,23 +5,17 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
     "tauri": "tauri"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-http": "^2.4.3",
     "@tauri-apps/plugin-opener": "^2",
-    "schwi": "../../"
+    "schwi": "../.."
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
     "typescript": "~5.8.3",
     "vite": "^6.0.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }

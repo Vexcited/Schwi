@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "schwi": "../../"
+    "schwi": "../.."
   },
   "devDependencies": {
     "typescript": "~5.8.3"
