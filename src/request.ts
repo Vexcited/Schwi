@@ -78,6 +78,12 @@ class HttpRequestBuilder {
     return this;
   }
 
+  public setFormUrlEncodedBody(searchParams: URLSearchParams): this {
+    this.body = searchParams.toString();
+    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/x-www-form-urlencoded");
+    return this;
+  }
+
   public setHeader(key: string, value: string): this {
     this.headers.set(key, value);
     return this;
@@ -96,12 +102,6 @@ class HttpRequestBuilder {
 
   public setRedirection(redirect: HttpRequestRedirection): this {
     this.redirection = redirect;
-    return this;
-  }
-
-  public setSearchParamsBody(searchParams: URLSearchParams): this {
-    this.body = searchParams.toString();
-    this.headers.set(HeaderKeys.CONTENT_TYPE, "application/x-www-form-urlencoded");
     return this;
   }
 
