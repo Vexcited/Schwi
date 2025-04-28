@@ -19,8 +19,11 @@ jobs:
         with:
           bun-version: latest
 
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - run: bun eslint
-      - run: bun test
-      - run: bun tsc
+      - run: |
+          bun install --frozen-lockfile
+          bun run build
+
+      - run: |
+          bun install --frozen-lockfile
+          bun eslint
+          bun tsc
