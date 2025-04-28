@@ -2,6 +2,30 @@
   "name": "schwi",
   "version": "0.1.0",
   "description": "An HTTP client that uses native APIs on each JS runtimes, supporting Browsers, Node.js, Deno, Bun, React Native and Tauri.",
+  "author": "Mikkel ALMONTE--RINGAUD <contact@vexcited.com> (https://github.com/Vexcited)",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/Vexcited",
+  "homepage": "https://github.com/Vexcited/Schwi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vexcited/Schwi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vexcited/Schwi/issues"
+  },
+  "keywords": [
+    "http",
+    "client",
+    "fetch",
+    "node",
+    "deno",
+    "bun",
+    "react-native",
+    "tauri",
+    "browser",
+    "undici",
+    "native"
+  ],
   "sideEffects": false,
   "exports": {
     "react-native": {
