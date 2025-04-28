@@ -1,6 +1,6 @@
 {
   "name": "schwi",
-  "description": "",
+  "description": "An HTTP client that uses native APIs on each JS runtimes, supporting Browsers, Node.js, Deno, Bun, React Native and Tauri.",
   "sideEffects": false,
   "exports": {
     "react-native": {
@@ -47,6 +47,9 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsup"
+  },
   "dependencies": {
     "undici": "^7.7.0"
   },
