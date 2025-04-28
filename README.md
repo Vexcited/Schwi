@@ -69,3 +69,21 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 - Uses [`undici`](https://github.com/nodejs/undici) on Bun to [prevent strange headers issues](https://github.com/oven-sh/bun/issues/4529#issuecomment-2611447527)
 
 ## Usage
+
+```typescript
+import { HttpRequest, send } from "schwi";
+
+const request = new HttpRequest.Builder("https://postman-echo.com/cookies/set")
+  .setUrlSearchParameter("foo1", "bar1")
+  .setUrlSearchParameter("foo2", "bar2")
+  .setRedirection(HttpRequest.Redirection.MANUAL)
+  .build();
+
+const response = await send(request);
+console.log(response.headers.getSetCookie());
+
+const body = await response.toString();
+console.log(body);
+```
+
+You can browse the [`examples` folder](./examples/) to see how to use the library in different runtimes.
