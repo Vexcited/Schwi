@@ -19,6 +19,6 @@
     "skipLibCheck": true
   },
 
-  "include": ["src", "examples", "tsup.config.ts"],
+  "include": ["src", "examples", "tsup.config.ts", "eslint.config.ts"],
   "exclude": ["node_modules", "dist"]
 }
