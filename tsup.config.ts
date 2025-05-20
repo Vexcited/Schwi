@@ -3,7 +3,7 @@ import { defineConfig } from "tsup";
 
 const defaults: Options = {
   dts: true,
-  external: ["cheerio"],
+  external: ["cheerio", "fast-xml-parser"],
   format: ["cjs", "esm"],
   minify: "terser",
   outDir: "dist",
