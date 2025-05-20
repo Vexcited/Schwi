@@ -22,9 +22,13 @@ type PossibleHeaders = (
   | Record<string, string>
 );
 
+export const kHeaders = Symbol("Headers");
+
 export class HeaderMap {
+  static [kHeaders] = Headers;
+
   public constructor(
-    private readonly headers: PossibleHeaders = new Headers()
+    private readonly headers: PossibleHeaders = new HeaderMap[kHeaders]()
   ) {}
 
   private static isHeadersInstance(headers: PossibleHeaders): headers is (
@@ -78,7 +82,7 @@ export class HeaderMap {
       return this.headers as Headers;
     }
 
-    return new Headers(Object.entries(this.headers));
+    return new HeaderMap[kHeaders](Object.entries(this.headers));
   }
 
   private splitSetCookieValue(headerValue: string): string[] {
