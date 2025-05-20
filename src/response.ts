@@ -27,4 +27,17 @@ export class HttpResponse {
     const string = await this.toString();
     return JSON.parse(string) as T;
   }
+
+  public async toXML <T = unknown>(): Promise<{ root: T }> {
+    const { XMLParser } = await import("fast-xml-parser");
+
+    const parser = new XMLParser({
+      attributeNamePrefix: "",
+      ignoreAttributes: false,
+      textNodeName: "content"
+    });
+
+    const string = await this.toString();
+    return parser.parse(string);
+  }
 }
