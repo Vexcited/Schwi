@@ -68,6 +68,41 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 - Implements a working `getSetCookie` function on `HeaderMap`, [even on React Native](https://github.com/facebook/react-native/issues/47049)
 - [Tauri's native HTTP plugin](https://tauri.app/plugin/http-client/) is automatically used when available
 - Uses [`undici`](https://github.com/nodejs/undici) on Bun to [prevent strange headers issues](https://github.com/oven-sh/bun/issues/4529#issuecomment-2611447527)
+- Provides optional `toXML()` and `toHTML()` helpers in `HttpResponse` for easier access with other packages, see [installation section to enable those](#optional-features)
+
+## Installation
+
+### Node.js, Deno, Bun
+
+```bash
+pnpm add schwi undici
+```
+
+### Tauri
+
+You should first [install Tauri's HTTP plugin according to the documentation](https://tauri.app/plugin/http-client/) before using Schwi, or you'll get an error during runtime.
+
+```bash
+pnpm add schwi
+```
+
+### React Native
+
+```bash
+pnpm add schwi
+```
+
+> In future versions, you'll also have to install a native module to provide a more accurate `fetch` implementation.
+
+### Optional Features
+
+```bash
+# Enables `HttpResponse.toHTML()`, otherwise you'll get an error during runtime.
+pnpm add cheerio
+
+# Enables `HttpResponse.toXML()`, otherwise you'll get an error during runtime.
+pnpm add fast-xml-parser
+```
 
 ## Usage
 
