@@ -37,7 +37,7 @@ So we have to use different code for React Native and the rest of the runtimes
 and also handle the fact that the output is not the same !
 As you can see, this is very frustrating.
 
-Now let's query an internal API through Tauri.
+Now let's query an API that is not allowing CORS through Tauri.
 
 ```javascript
 // Tauri
@@ -46,8 +46,9 @@ const response = await fetch("https://api.example.com");
 // To fix this issue, you have to instead use the
 // `fetch` API from official Tauri plugins.
 
-// Node.js, Bun, Deno, React Native, Capacitor
+// Node.js, Bun, Deno, React Native
 const response = await fetch("https://api.example.com");
+// > 200 OK
 // Simply works !
 ```
 
@@ -55,7 +56,7 @@ Now you can see that the CORS policy is not the same across runtimes.
 It's completely normal and compliant behavior, but it can be frustrating when you want to
 build a cross-platform library that should work everywhere.
 
-**Note that you should really only use this library if you want to build a cross-platform library which needs to either interact with `Set-Cookie` headers (such as `Set-Cookie`), either manipulate request headers (such as `User-Agent`, `Origin` or `Referer`) or simply ignore CORS, because of the native client.**
+**Note that you should really only use this library if you want to build a cross-platform library which needs to either interact with `Set-Cookie` headers (such as `Set-Cookie`), either manipulate request headers (such as `User-Agent`, `Origin` or `Referer`) or simply ignore CORS.**
 
 ## Goal
 
