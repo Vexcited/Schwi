@@ -58,8 +58,6 @@ build a cross-platform library that should work everywhere.
 
 **Note that you should really only use this library if you want to build a cross-platform library which needs to either interact with `Set-Cookie` headers (such as `Set-Cookie`), either manipulate request headers (such as `User-Agent`, `Origin` or `Referer`) or simply ignore CORS.**
 
-## Goal
-
 The goal of this library is to provide a consistent API across runtimes.
 This means that you can use the same HTTP API across all runtimes, and it will behave the same way.
 
@@ -72,27 +70,34 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 
 ## Installation
 
-### Node.js, Deno, Bun
+### Node.js, Deno
 
 ```bash
-pnpm add schwi undici
+pnpm add schwi
+```
+
+### Bun
+
+```bash
+bun add schwi undici
 ```
 
 ### Tauri
 
-You should first [install Tauri's HTTP plugin according to the documentation](https://tauri.app/plugin/http-client/) before using Schwi, or you'll get an error during runtime.
-
 ```bash
+# You should setup Tauri's HTTP plugin first.
+# See https://tauri.app/plugin/http-client/ for more details.
+pnpm tauri add http
 pnpm add schwi
 ```
 
 ### React Native
 
+In future versions, you'll also have to install a native module to polyfill and provide a more accurate `fetch` implementation.
+
 ```bash
 pnpm add schwi
 ```
-
-> In future versions, you'll also have to install a native module to provide a more accurate `fetch` implementation.
 
 ### Optional Features
 
