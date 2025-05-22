@@ -73,36 +73,47 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 
 ### Node.js, Deno
 
-```bash
+```sh
 pnpm add schwi
 ```
 
 ### Bun
 
-```bash
+```sh
 bun add schwi undici
 ```
 
 ### Tauri
 
-```bash
-# You should setup Tauri's HTTP plugin first.
-# See https://tauri.app/plugin/http-client/ for more details.
+You should setup Tauri's HTTP plugin first, see <https://tauri.app/plugin/http-client/> for more details.
+
+```sh
 pnpm tauri add http
 pnpm add schwi
 ```
 
 ### React Native
 
-```bash
-# react-native-real-fetch is required to use features that
-# are not supported by the default `fetch` implementation in React Native.
-pnpm add schwi react-native-real-fetch
+> `react-native-real-fetch` is required to use features that are not supported by the default `fetch` implementation in React Native. `react-native-nitro-modules` is required to build `react-native-real-fetch` properly.
+
+#### Bare
+
+```sh
+npm add schwi react-native-real-fetch react-native-nitro-modules
+cd ios && pod install
+```
+
+#### Expo
+
+```sh
+npx expo add react-native-real-fetch react-native-nitro-modules
+npm add schwi
+npx expo prebuild
 ```
 
 ### Optional Features
 
-```bash
+```sh
 # Enables `HttpResponse.toHTML()`, otherwise you'll get an error during runtime.
 pnpm add cheerio
 
