@@ -1,9 +1,9 @@
-import type { Options } from "tsup";
-import { defineConfig } from "tsup";
+import { defineConfig, type Options } from "tsup";
+import pkg from "./package.json";
 
 const defaults: Options = {
   dts: true,
-  external: ["cheerio", "fast-xml-parser"],
+  external: Object.keys(pkg.optionalDependencies),
   format: ["cjs", "esm"],
   minify: "terser",
   outDir: "dist",
