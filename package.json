@@ -82,6 +82,7 @@
     "@tauri-apps/plugin-http": "^2.4.4",
     "cheerio": "^1.0.0",
     "fast-xml-parser": "^5.2.3",
+    "react-native-real-fetch": "^0.1.1",
     "undici": "^7.10.0"
   },
   "devDependencies": {

@@ -9,7 +9,6 @@ export const fetchAdapter = async (fetch: (url: string, init: RequestInit) => Pr
     credentials: "omit",
     headers: req.headers.toNativeHeaders(),
     method: req.method,
-
     redirect: req.redirection
   });
 

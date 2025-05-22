@@ -1,5 +1,5 @@
 import { factory } from "./factory";
-import { fetcher } from "./fetchers/native";
+import { fetcher } from "./fetchers/react-native";
 
 export * from "./form";
 export { HeaderKeys, HeaderMap } from "./headers";
