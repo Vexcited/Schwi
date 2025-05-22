@@ -67,6 +67,7 @@ This means that you can use the same HTTP API across all runtimes, and it will b
 - [Tauri's native HTTP plugin](https://tauri.app/plugin/http-client/) is automatically used when available
 - Uses [`undici`](https://github.com/nodejs/undici) on Bun to [prevent strange headers issues](https://github.com/oven-sh/bun/issues/4529#issuecomment-2611447527)
 - Provides optional `toXML()` and `toHTML()` helpers in `HttpResponse` for easier access with other packages, see [installation section to enable those](#optional-features)
+- Uses a [native implementation of `fetch`](https://github.com/Vexcited/react-native-real-fetch) on React Native
 
 ## Installation
 
@@ -93,10 +94,10 @@ pnpm add schwi
 
 ### React Native
 
-In future versions, you'll also have to install a native module to polyfill and provide a more accurate `fetch` implementation.
-
 ```bash
-pnpm add schwi
+# react-native-real-fetch is required to use features that
+# are not supported by the default `fetch` implementation in React Native.
+pnpm add schwi react-native-real-fetch
 ```
 
 ### Optional Features
