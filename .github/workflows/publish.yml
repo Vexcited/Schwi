@@ -21,7 +21,8 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.com"
 
-      - env:
+      - working-directory: package
+        env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm install && npx tsup

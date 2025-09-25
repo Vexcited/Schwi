@@ -21,9 +21,8 @@ jobs:
 
       - run: |
           bun install --frozen-lockfile
-          bun run build
+          bun --filter schwi build
 
       - run: |
-          bun install --frozen-lockfile
-          bun eslint
-          bun tsc
+          bun --filter schwi lint
+          bun --filter schwi typecheck

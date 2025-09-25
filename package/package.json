@@ -1,0 +1,99 @@
+{
+  "name": "schwi",
+  "version": "0.5.0",
+  "description": "An HTTP client that uses native APIs on each JS runtimes, supporting Browsers, Node.js, Deno, Bun, React Native and Tauri.",
+  "author": "Mikkel ALMONTE--RINGAUD <contact@vexcited.com> (https://github.com/Vexcited)",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/Vexcited",
+  "homepage": "https://github.com/Vexcited/Schwi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vexcited/Schwi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vexcited/Schwi/issues"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "keywords": [
+    "http",
+    "client",
+    "fetch",
+    "node",
+    "deno",
+    "bun",
+    "react-native",
+    "tauri",
+    "browser",
+    "undici",
+    "native"
+  ],
+  "sideEffects": false,
+  "exports": {
+    "react-native": {
+      "import": {
+        "types": "./dist/index.react-native.d.mts",
+        "default": "./dist/index.react-native.mjs"
+      },
+      "default": {
+        "types": "./dist/index.react-native.d.ts",
+        "default": "./dist/index.react-native.js"
+      }
+    },
+    "browser": {
+      "import": {
+        "types": "./dist/index.tauri.d.mts",
+        "default": "./dist/index.tauri.mjs"
+      },
+      "default": {
+        "types": "./dist/index.tauri.d.ts",
+        "default": "./dist/index.tauri.js"
+      }
+    },
+    "bun": {
+      "import": {
+        "types": "./dist/index.bun.d.mts",
+        "default": "./dist/index.bun.mjs"
+      },
+      "default": {
+        "types": "./dist/index.bun.d.ts",
+        "default": "./dist/index.bun.js"
+      }
+    },
+    "default": {
+      "import": {
+        "types": "./dist/index.node.d.mts",
+        "default": "./dist/index.node.mjs"
+      },
+      "default": {
+        "types": "./dist/index.node.d.ts",
+        "default": "./dist/index.node.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint",
+    "typecheck": "tsc"
+  },
+  "optionalDependencies": {
+    "@tauri-apps/plugin-http": "^2.5.2",
+    "cheerio": "^1.1.2",
+    "fast-xml-parser": "^5.2.5",
+    "react-native-real-fetch": "^0.1.3",
+    "undici": "^7.16.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.22",
+    "@vexcited/eslint-config": "^0.1.1",
+    "eslint": "^9.36.0",
+    "jiti": "^2.6.0",
+    "terser": "^5.44.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}

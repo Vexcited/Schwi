@@ -16,7 +16,7 @@ enum HttpRequestRedirection {
 }
 
 class HttpRequestBuilder {
-  private body?: ArrayBuffer | Blob | FormData | string | Uint8Array;
+  private body?: ArrayBuffer | Blob | FormData | string;
   private cookies: Record<string, string> = {};
   private headers = new HeaderMap();
   private method = HttpRequestMethod.GET;
@@ -119,7 +119,7 @@ export class HttpRequest {
   public constructor(
     public readonly url: URL,
     public readonly method: HttpRequestMethod,
-    public readonly body: ArrayBuffer | Blob | FormData | string | Uint8Array | undefined,
+    public readonly body: ArrayBuffer | Blob | FormData | string | undefined,
     public readonly headers: HeaderMap,
     public readonly redirection: HttpRequestRedirection
   ) {}

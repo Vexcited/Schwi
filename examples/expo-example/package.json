@@ -30,14 +30,14 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.2",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-nitro-modules": "^0.25.2",
-    "react-native-real-fetch": "^0.1.1",
+    "react-native-nitro-modules": "^0.29.3",
+    "react-native-real-fetch": "^0.1.3",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.10.0",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-    "schwi": "../.."
+    "schwi": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

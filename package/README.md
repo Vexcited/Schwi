@@ -94,19 +94,19 @@ pnpm add schwi
 
 ### React Native
 
-> `react-native-real-fetch` is required to use features that are not supported by the default `fetch` implementation in React Native. `react-native-nitro-modules` is required to build `react-native-real-fetch` properly.
+> [`react-native-real-fetch`](https://github.com/Vexcited/react-native-real-fetch) is required to use features that are not supported by the default `fetch` implementation in React Native. `react-native-nitro-modules` is required to build `react-native-real-fetch` properly.
 
 #### Bare
 
 ```sh
-npm add schwi react-native-real-fetch react-native-nitro-modules
+npm add schwi react-native-real-fetch@0.1.3 react-native-nitro-modules@^0.29.3
 cd ios && pod install
 ```
 
 #### Expo
 
 ```sh
-npx expo add react-native-real-fetch react-native-nitro-modules
+npx expo add react-native-real-fetch@0.1.3 react-native-nitro-modules@^0.29.3
 npm add schwi
 npx expo prebuild
 ```
