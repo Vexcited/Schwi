@@ -1,6 +1,6 @@
 {
   "name": "schwi",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "An HTTP client that uses native APIs on each JS runtimes, supporting Browsers, Node.js, Deno, Bun, React Native and Tauri.",
   "author": "Mikkel ALMONTE--RINGAUD <contact@vexcited.com> (https://github.com/Vexcited)",
   "license": "MIT",
