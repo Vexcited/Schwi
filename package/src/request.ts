@@ -1,6 +1,6 @@
 import { HeaderKeys, HeaderMap } from "./headers";
 
-enum HttpRequestMethod {
+export enum HttpRequestMethod {
   DELETE = "DELETE",
   GET = "GET",
   HEAD = "HEAD",
@@ -10,7 +10,7 @@ enum HttpRequestMethod {
   PUT = "PUT"
 }
 
-enum HttpRequestRedirection {
+export enum HttpRequestRedirection {
   FOLLOW = "follow",
   MANUAL = "manual"
 }

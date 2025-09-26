@@ -29,7 +29,7 @@ import { fetcher } from "./fetchers/undici";
 
 export * from "./form";
 export { HeaderKeys } from "./headers";
-export { HttpRequest } from "./request";
+export { HttpRequest, HttpRequestMethod, HttpRequestRedirection } from "./request";
 export { HttpResponse } from "./response";
 
 export const send = factory(fetcher);
