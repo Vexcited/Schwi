@@ -68,7 +68,32 @@ class HttpRequestBuilder {
     return this;
   }
 
-  public setAllCookies(cookies: Record<string, string>): this {
+  /**
+   * @example
+   * .setAllCookies([["name", "value"], ["name2", "value2"]])
+   */
+  public setAllCookies(cookies: Array<[string, string]>): this;
+  /**
+   * @example
+   * .setAllCookies(["name=value", "name2=value2"])
+   */
+  public setAllCookies(cookies: Array<string>): this;
+  /**
+   * @example
+   * .setAllCookies({ name: "value", name2: "value2" })
+   */
+  public setAllCookies(cookies: Record<string, string>): this;
+  public setAllCookies(cookies: Array<[string, string]> | Array<string> | Record<string, string>): this {
+    if (Array.isArray(cookies)) {
+      const arr = cookies;
+      cookies = {};
+
+      for (const cookie of arr) {
+        const [name, value] = Array.isArray(cookie) ? cookie : cookie.split("=");
+        cookies[name] = value;
+      }
+    }
+
     this.cookies = { ...this.cookies, ...cookies };
     return this;
   }
